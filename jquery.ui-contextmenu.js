@@ -234,7 +234,7 @@ $.widget("moogle.contextmenu", {
 
 		// Register global event handlers that close the dropdown-menu
 		$(document).on("keydown" + this.eventNamespace, function(event) {
-			if ( event.which === $.ui.keyCode.ESCAPE ) {
+			if ( event.which === $.ui.keyCode.ESCAPE || event.which === $.ui.keyCode.TAB ) {
 				self._closeMenu();
 			}
 		}).on("mousedown" + this.eventNamespace + " touchstart" + this.eventNamespace,
@@ -467,7 +467,7 @@ $.extend($.moogle.contextmenu, {
 	createMenuMarkup: function(options, $parentUl) {
 		var i, menu, $ul, $li;
 		if ( $parentUl == null ) {
-			$parentUl = $("<ul class='ui-helper-hidden' />").appendTo("body");
+			$parentUl = $("<ul class='ui-helper-hidden dropdown-menu'/>").appendTo("body");
 		}
 		for (i = 0; i < options.length; i++) {
 			menu = options[i];
@@ -476,7 +476,7 @@ $.extend($.moogle.contextmenu, {
 			$.moogle.contextmenu.createEntryMarkup(menu, $li);
 
 			if ( $.isArray(menu.children) ) {
-				$ul = $("<ul/>").appendTo($li);
+				$ul = $("<ul class='dropdown-menu'/>").appendTo($li);
 				$.moogle.contextmenu.createMenuMarkup(menu.children, $ul);
 			}
 		}
