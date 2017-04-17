@@ -467,7 +467,7 @@ $.extend($.moogle.contextmenu, {
 	createMenuMarkup: function(options, $parentUl) {
 		var i, menu, $ul, $li;
 		if ( $parentUl == null ) {
-			$parentUl = $("<ul class='ui-helper-hidden dropdown-menu'/>").appendTo("body");
+			$parentUl = $("<ul class='ui-helper-hidden'/>").appendTo("body");
 		}
 		for (i = 0; i < options.length; i++) {
 			menu = options[i];
@@ -476,7 +476,7 @@ $.extend($.moogle.contextmenu, {
 			$.moogle.contextmenu.createEntryMarkup(menu, $li);
 
 			if ( $.isArray(menu.children) ) {
-				$ul = $("<ul class='dropdown-menu'/>").appendTo($li);
+				$ul = $("<ul/>").appendTo($li);
 				$.moogle.contextmenu.createMenuMarkup(menu.children, $ul);
 			}
 		}
