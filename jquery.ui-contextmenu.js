@@ -338,6 +338,8 @@ $.widget("moogle.contextmenu", {
 	/** Enable or disable the menu command. */
 	enableEntry: function(cmd, flag) {
 		this._getMenuEntry(cmd).toggleClass("ui-state-disabled", (flag === false));
+		var isDisabled = this._getMenuEntry(cmd).hasClass("ui-state-disabled") ? true : false;
+		this._getMenuEntry(cmd).attr("aria-disabled", isDisabled);
 	},
 	/** Return Menu element (UL). */
 	getMenu: function() {
@@ -448,6 +450,7 @@ $.extend($.moogle.contextmenu, {
 			}
 			if ( entry.disabled ) {
 				$parentLi.addClass("ui-state-disabled");
+				$parentLi.attr("aria-disabled", true);
 			}
 			if ( entry.isHeader ) {
 				$parentLi.addClass("ui-widget-header");
